@@ -1,3 +1,9 @@
+class NewNode {
+  constructor(val, nextPointer = null) {
+    this.val = val;
+    this.nextPointer = nextPointer;
+  }
+}
 class SinglyLinkedList {
   constructor() {
     this.head = null;
@@ -8,10 +14,7 @@ class SinglyLinkedList {
     return this.length === 0;
   }
   addNode(val) {
-    let newNode = {
-      val,
-      nextPointer: null,
-    };
+    let newNode = new NewNode(val);
 
     if (this.isEmply()) {
       this.head = newNode;
@@ -24,6 +27,18 @@ class SinglyLinkedList {
     this.length++;
   }
 
+  addNodeAtFirst(val) {
+    let newNode = new NewNode(val);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+      ++this.length;
+    } else {
+      newNode.nextPointer = this.head;
+      this.head = newNode;
+      ++this.length;
+    }
+  }
   deleteLastNode() {
     if (!this.head) return null;
 
@@ -52,19 +67,54 @@ class SinglyLinkedList {
 
     return lastNode;
   }
+
+  deleteFirstNode() {
+    if (!this.head) return null;
+    if (this.length === 1) {
+      let removedNode = this.head;
+      this.head = null;
+      this.tail = null;
+      return removedNode;
+    }
+
+    let currentNode = this.head;
+    this.head = currentNode.nextPointer;
+    currentNode.nextPointer = null;
+    return currentNode;
+  }
+
+  showList() {
+    let arr = [];
+    let currentHead = this.head;
+
+    while (currentHead) {
+      arr.push(currentHead.val);
+      currentHead = currentHead.nextPointer;
+    }
+    return arr;
+  }
 }
 
 let singlyLinkedList = new SinglyLinkedList();
-singlyLinkedList.addNode(1);
-singlyLinkedList.addNode(2);
-singlyLinkedList.addNode(3);
-singlyLinkedList.addNode(4);
-console.log(singlyLinkedList);
-console.log(singlyLinkedList.deleteLastNode());
-console.log(singlyLinkedList);
-console.log(singlyLinkedList.deleteLastNode());
-console.log(singlyLinkedList);
-console.log(singlyLinkedList.deleteLastNode());
-console.log(singlyLinkedList);
-console.log(singlyLinkedList.deleteLastNode());
-console.log(singlyLinkedList);
+singlyLinkedList.addNodeAtFirst(1);
+singlyLinkedList.addNodeAtFirst(21);
+singlyLinkedList.addNodeAtFirst(111);
+singlyLinkedList.addNode(500);
+
+// singlyLinkedList.addNode(2);
+// singlyLinkedList.addNode(3);
+// singlyLinkedList.addNode(4);
+console.log(singlyLinkedList.showList());
+// console.log(singlyLinkedList.addNodeAtFirst(0));
+// console.log(singlyLinkedList);
+
+// console.log(singlyLinkedList.deleteFirstNode());
+// console.log(singlyLinkedList);
+// console.log(singlyLinkedList.deleteLastNode());
+// console.log(singlyLinkedList);
+// console.log(singlyLinkedList.deleteLastNode());
+// console.log(singlyLinkedList);
+// console.log(singlyLinkedList.deleteLastNode());
+// console.log(singlyLinkedList);
+// console.log(singlyLinkedList.deleteLastNode());
+// console.log(singlyLinkedList);
