@@ -181,14 +181,17 @@
 // console.log(regex.test("funnnnnny"));
 
 // specify exact number of matches
+
 // const regex = /tim{4}ber/i;
 // console.log(regex.test("Timmmmber"));
 
 // check for all or none
+
 // const regex = /favou?rite/i;
 // console.log(regex.test("favourite"));
 
 // positive and negative lookahead
+
 // const positiveLookahead = /q(?=u)/;
 // console.log("quite".match(positiveLookahead)); //checks if u presents after q
 // const negativeLookahead = /q(?!u)/; //checks if u not present after q
@@ -221,3 +224,39 @@
 
 // let str = "       hello world              ";
 // console.log(str.replace(/^\s+|\s+$/g, "").length);
+
+// regex from javascript data structure and algorithm book
+// any numeric characters
+
+// console.log(/\d+/.test("123")); // true
+// console.log(/\d+/.test("123abc")); // true
+// console.log(/\d+/.test("abc5")); // true
+// console.log(/\d+/.test("u5t")); // true
+// console.log(/\d+/.test("javascript ")); // false
+
+// only numeric characters
+// console.log(/^\d+$/.test("123")); // true
+// console.log(/^\d+$/.test("1a3")); //false
+// console.log(/^\d+$/.test("a123")); //false
+// console.log(/^\d+$/.test("123a")); //false
+// console.log(/^\d+$/.test("abc")); //false
+
+// floating numeric characters
+// console.log(/^[0-9]*.[0-9]*[1-9]+$/.test("123")); true
+// console.log(/^[0-9]*.[0-9]*[1-9]+$/.test("123.00")); false
+// console.log(/^[0-9]*.[0-9]*[1-9]+$/.test("123.023")); true
+// console.log(/^[0-9]*.[0-9]*[1-9]+$/.test("123.7")); true
+
+// only alphanumeric characters
+// console.log(/[A-Za-z0-9]/.test("123"));
+// console.log(/[A-Za-z0-9]/.test("123abc"));
+// console.log(/[A-Za-z0-9]/.test("abc"));
+// console.log(/[A-Za-z0-9]/.test("a1b2c3"));
+// console.log(/[A-Za-z0-9]/.test("_"));
+
+// alpha numeric and _
+// console.log(/\w+/.test("123"));
+// console.log(/\w+/.test("123abc"));
+// console.log(/\w+/.test("avc123"));
+// console.log(/\w+/.test("1a2v3"));
+// console.log(/\w+/.test("---"));
